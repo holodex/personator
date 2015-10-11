@@ -1,0 +1,15 @@
+{
+  "name": "personator",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Connoropolous/personator.git"
+  },
+  "dependencies": {
+    "express": "3.x.x",
+    "ejs": ">= 0.0.0",
+    "passport": ">= 0.0.0",
+    "passport-github": ">= 0.0.0",
+    "linked-data-creator-api": "valueflows/linked-data-creator-api"
+  }
+}

@@ -1,0 +1,26 @@
+<% if (!user) { %>
+	<h2>Welcome! Please <a href="/auth/github">log in with Github</a>.</h2>
+<% } else { %>
+	<h2>Hello, <%= user.displayName %>.</h2>
+	<% if (profile) { %>
+		<p>You have an open data profile</p>
+		<p>Display Name: <%= profile.get('displayName') %></p>
+		<p>url: <a href="<%= profile.get('url') %>"><%= profile.get('url') %></a></p>
+		<img src="<%= profile.get('image') %>" />
+		<p>You can find it at <a href="https://github.com/<%= user.username %>/open-data-self/blob/master/data.json">https://github.com/<%= user.username %>/open-data-self/blob/master/data.json</a></p>
+	<% } else { %>
+		<h2>You can create an open data profile for yourself...</h2>
+		<form action="/create_profile" method="post">
+		  Display Name:<br>
+		  <input type="text" name="displayName" value="">
+		  <br>
+		  Image URL:<br>
+		  <input type="text" name="image" value="">
+		  <br>
+		  Homepage URL:<br>
+		  <input type="text" name="url" value="">
+		  <br><br>
+		  <input type="submit" value="Submit">
+		</form>
+	<% } %>
+<% } %>
