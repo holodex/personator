@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Connoropolous/personator.git"
+    "url": "git://github.com/holodex/personator.git"
   },
   "dependencies": {
     "express": "3.x.x",
