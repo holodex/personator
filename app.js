@@ -33,7 +33,7 @@ passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
     scope: ['repo'],
-    callbackURL: 'https://nodejs-linked-data-creator-connoropolous.c9.io/auth/github/callback'
+    callbackURL: 'https://personator-connoropolous.c9.io/auth/github/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
