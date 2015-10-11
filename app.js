@@ -49,8 +49,6 @@ passport.use(new GitHubStrategy({
 ));
 
 
-
-
 var app = express();
 
 // configure Express
@@ -101,13 +99,11 @@ app.get('/auth/github',
 app.get('/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log(req.user);
     ld.configure({
       token: req.user.accessToken,
       username: req.user.username
-    }, function () {
-      res.redirect('/');
     });
+    res.redirect('/');
   });
 
 app.get('/logout', function(req, res){
