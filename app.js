@@ -3,10 +3,10 @@ var express = require('express')
   , util = require('util')
   , GitHubStrategy = require('passport-github').Strategy
   , ld = require('linked-data-creator-api')
-  , dbUrl = 'mongodb://localhost/test2';
+  , dbUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/test2';
 
-var GITHUB_CLIENT_ID = "e71c9f79ab961a823bcc"
-var GITHUB_CLIENT_SECRET = "14fe5897e4cb75ddcb0a707e3331e7fdf08bcb10";
+var GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID || "e71c9f79ab961a823bcc"
+var GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || "14fe5897e4cb75ddcb0a707e3331e7fdf08bcb10";
 
 
 // Passport session setup.
@@ -33,7 +33,7 @@ passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
     scope: ['repo'],
-    callbackURL: 'https://personator-connoropolous.c9.io/auth/github/callback'
+    callbackURL: process.env.GITHUB_CALLBACK || 'http://localhost:3000/auth/github/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -113,7 +113,8 @@ app.get('/logout', function(req, res){
 
 ld.connect(dbUrl, function(err) {
   if (err) return console.log(err);
-  app.listen(process.env.PORT, process.env.IP);
+  // for cloud9 app.listen(process.env.PORT, process.env.IP);
+  app.listen(process.env.PORT || 3000);
   console.log('server started');
 });
 
